@@ -6,9 +6,9 @@ import { fileURLToPath } from 'url';
 import { setupApp } from './setup.js';  // استدعاء setupApp من هنا
 
 // routes
-import productRoutes from './Routes/productRoutes.js';
-import adminRoutes from './Routes/adminRoutes.js';
-import saleRoutes from './Routes/saleRoutes.js';
+import productRoutes from './routes/productRoutes.js';
+import adminRoutes from './routes/adminRoutes.js';
+import saleRoutes from './routes/saleRoutes.js';
 
 dotenv.config();
 
