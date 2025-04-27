@@ -37,3 +37,5 @@ app.use((req, res, next) => {
 app.listen(port, () => {
     console.log("server is running");
 })
+
+export default app;
