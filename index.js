@@ -1,17 +1,15 @@
+// index.js
 import express from 'express';
 import dotenv from 'dotenv';
 import cors from 'cors';
 import path from 'path';
 import { fileURLToPath } from 'url';
-import { syncDatabase } from './models/index.js';
+import './setup.js'; // استوردنا ملف التجهيز فوق بدون انتظار
 
 // routes
 import productRoutes from './Routes/productRoutes.js';
 import adminRoutes from './Routes/adminRoutes.js';
 import saleRoutes from './Routes/saleRoutes.js';
-
-// config
-import createAdmin from './config/adminSetup.js';
 
 dotenv.config();
 
@@ -30,13 +28,10 @@ app.use('/api/auth', adminRoutes);
 app.use('/api/products', productRoutes);
 app.use('/api/sales', saleRoutes);
 
+// logging middleware
 app.use((req, res, next) => {
     console.log(req.path, req.method);
     next();
 });
-
-// sync db before exporting app
-syncDatabase();
-createAdmin();
 
 export default app;
