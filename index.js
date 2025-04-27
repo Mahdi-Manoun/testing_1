@@ -36,7 +36,7 @@ app.use((req, res, next) => {
 });
 
 // sync db before exporting app
-await syncDatabase();
-await createAdmin();
+syncDatabase();
+createAdmin();
 
 export default app;
