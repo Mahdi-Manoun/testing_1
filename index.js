@@ -4,12 +4,13 @@ import dotenv from 'dotenv';
 import cors from 'cors';
 import path from 'path';
 import { fileURLToPath } from 'url';
-import './setup.js'; // استوردنا ملف التجهيز فوق بدون انتظار
+import setupApp from './setup.js';
 
 // routes
 import productRoutes from './Routes/productRoutes.js';
 import adminRoutes from './Routes/adminRoutes.js';
 import saleRoutes from './Routes/saleRoutes.js';
+
 
 dotenv.config();
 
@@ -33,5 +34,7 @@ app.use((req, res, next) => {
     console.log(req.path, req.method);
     next();
 });
+
+setupApp();
 
 export default app;

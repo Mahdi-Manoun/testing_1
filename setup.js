@@ -11,4 +11,4 @@ async function setupApp() {
     }
 }
 
-setupApp();
+export default setupApp
