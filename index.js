@@ -13,7 +13,6 @@ import saleRoutes from './Routes/saleRoutes.js';
 // config
 import createAdmin from './config/adminSetup.js';
 
-
 dotenv.config();
 
 const __filename = fileURLToPath(import.meta.url);
@@ -36,27 +35,8 @@ app.use((req, res, next) => {
     next();
 });
 
-// sync db before running the server
-syncDatabase()
-    .then(async () => {
-        console.log('Database synced successfully');
+// sync db before exporting app
+await syncDatabase();
+await createAdmin();
 
-        try {
-            await createAdmin();
-            console.log('Admin setup check completed');
-
-            const PORT = process.env.PORT || 5000;
-            const server = app.listen(PORT, () => {
-                console.log(`Server running on port ${PORT}`);
-            });
-
-            return server;
-        } catch (adminError) {
-            console.error('Admin initialization failed:', adminError);
-            throw adminError;
-        }
-    })
-    .catch((error) => {
-        console.error('Server startup failed:', error);
-        process.exit(1); // Exit with failure
-    });
+export default app;
