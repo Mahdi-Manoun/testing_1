@@ -1,7 +1,7 @@
 import { syncDatabase } from './models/index.js';
 import createAdmin from './config/adminSetup.js';
 
-async function setupApp() {
+export async function setupApp() {
     try {
         await syncDatabase();
         await createAdmin();
@@ -10,5 +10,3 @@ async function setupApp() {
         console.error('Setup failed:', error);
     }
 }
-
-setupApp();

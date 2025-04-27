@@ -1,10 +1,9 @@
-// index.js
 import express from 'express';
 import dotenv from 'dotenv';
 import cors from 'cors';
 import path from 'path';
 import { fileURLToPath } from 'url';
-import './setup.js';
+import { setupApp } from './setup.js';  // استدعاء setupApp من هنا
 
 // routes
 import productRoutes from './Routes/productRoutes.js';
@@ -17,6 +16,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const app = express();
+
 app.use(express.json());
 app.use(cors());
 
@@ -32,5 +32,8 @@ app.use((req, res, next) => {
     console.log(req.path, req.method);
     next();
 });
+
+// تأجيل استدعاء setupApp إلى أن يكون السيرفر جاهز للعمل
+setupApp();
 
 export default app;
