@@ -17,7 +17,6 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const app = express();
-const port = 5000 || process.env.PORT
 app.use(express.json());
 app.use(cors());
 
@@ -33,9 +32,5 @@ app.use((req, res, next) => {
     console.log(req.path, req.method);
     next();
 });
-
-app.listen(port, () => {
-    console.log("server is running");
-})
 
 export default app;
